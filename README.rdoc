@@ -26,13 +26,13 @@ Please, have a look at the wiki pages about development workflow and code standa
 
   * curl
 
-  * postgresql-server-dev-9.1
+  * postgresql-server-dev-9.4
 
   *NOTE:* The version of postgresql may vary according to your system version
 
 * Ruby version
 
-  2.2.0
+  2.2.1p85
 
   You can easily install it through the Ruby Version Manager - RVM. Instructions on how to do it can be found at http://rvm.io
 
