@@ -27,11 +27,11 @@ class KalibroModule < ActiveRecord::Base
   end
 
   def granularity=(value)
-    self.granlrty = value.to_s
+    self.granularity = value.to_s
   end
 
   def granularity
-    Granularity.new(self.granlrty.to_sym)
+    Granularity.new(self.granularity.to_sym)
   end
 
   def to_s
