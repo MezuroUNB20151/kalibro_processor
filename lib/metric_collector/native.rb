@@ -1,5 +1,6 @@
 require 'metric_collector/native/analizo'
 require 'metric_collector/native/metric_fu'
+require 'metric_collector/native/radon'
 
 module MetricCollector
   module Native
