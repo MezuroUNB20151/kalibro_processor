@@ -11,8 +11,7 @@ module MetricCollector
           runner = Runner.new(reposiory_path: code_directory)
 
           runner.run
-
-          #the parser comes here
+          MetricCollector::Native::Radon::Parser.collected_results(runner.json_path, wanted_metrics)
           runner.clean_output
         end
 
