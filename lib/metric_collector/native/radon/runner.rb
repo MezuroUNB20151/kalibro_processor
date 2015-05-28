@@ -6,6 +6,10 @@ module MetricCollector
           @repository_path = attributes[:repository_path]
         end
 
+        def repository_path
+          @repository_path
+        end
+
         def run
           run_cyclomatic_complexity
           run_maintainability
