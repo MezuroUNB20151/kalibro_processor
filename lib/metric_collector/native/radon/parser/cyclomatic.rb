@@ -4,12 +4,9 @@ module MetricCollector
       module Parser
         class Cyclomatic < MetricCollector::Native::Radon::Parser::Base
 
-          def self.parse(output_path, processing = nil, metric_configuration = nil)
+          def self.parse(cyclomatic_output, processing = nil, metric_configuration = nil)
 
-            output_file = File.read("#{output_path}/radon_cc_output.json")
-            data_hash = JSON.parse(output_file)
-
-            data_hash.each do |file_name, result_hash|
+            cyclomatic_output.each do |file_name, result_hash|
               name_prefix = module_name_prefix(file_name)
               result_hash.each do |key|
                 name_suffix = module_name_suffix(key['name'])
