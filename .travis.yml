@@ -2,7 +2,7 @@ language: ruby
 rvm:
   - 2.2.2
 
-install: "pip install radon"
+install: "sudo pip install radon"
 
 addons:
   postgresql: "9.3"
