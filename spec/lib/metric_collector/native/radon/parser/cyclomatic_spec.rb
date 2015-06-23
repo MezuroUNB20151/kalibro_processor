@@ -5,7 +5,8 @@ describe MetricCollector::Native::Radon::Parser::Cyclomatic do
   describe 'parse' do
     let!(:radon_results) { FactoryGirl.build(:radon_collector_lists).results[:cc] }
     let!(:processing) { FactoryGirl.build(:processing) }
-    let!(:metric_configuration) { FactoryGirl.build(:cyclomatic_configuration) }
+    let!(:metric_configuration) { FactoryGirl.build(:cyclomatic_metric_configuration) }
+    let!(:secondary_metric_configuration) { FactoryGirl.build(:cyclomatic_metric_configuration) }
 
     context 'when there is a valid json input for cyclomatic parse' do
       before :each do
@@ -17,13 +18,20 @@ describe MetricCollector::Native::Radon::Parser::Cyclomatic do
         expect(@result['complexity']).to eq(radon_results['complexity'])
         expect(@result['name']).to eq(radon_results['name'])
 
-        end
+      end
+    end
+
+     context 'when there are ModuleResults with the same module and processing' do
+      it 'is expected to parse the results into a module result' do
+        MetricCollector::Native::Radon::Parser::Cyclomatic.parse(radon_results, processing, metric_configuration)
+        MetricCollector::Native::Radon::Parser::Cyclomatic.parse(radon_results, processing, secondary_metric_configuration)
+      end
     end
   end
 
   describe 'default_value' do
     it 'is expected to return 0.0' do
-      expect(MetricCollector::Native::Radon::Parser::Cyclomatic.default_value).to eq(0.0)
+      expect(MetricCollector::Native::Radon::Parser::Cyclomatic.default_value).to eq(1.0)
     end
   end
 

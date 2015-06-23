@@ -17,10 +17,6 @@ module MetricCollector
 
         end
 
-        def repository_path
-          @repository_path
-        end
-
         def run_wanted_metrics
           @wanted_metric_configurations.each do |metric_configuration|
             code = metric_configuration.metric.code

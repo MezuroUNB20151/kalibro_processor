@@ -5,7 +5,7 @@ describe MetricCollector::Native::Radon::Parser::Maintainability do
   describe 'parse' do
     let!(:radon_results) { FactoryGirl.build(:radon_collector_lists).results[:mi] }
     let!(:processing) { FactoryGirl.build(:processing) }
-    let!(:metric_configuration) { FactoryGirl.build(:maintainability_configuration) }
+    let!(:metric_configuration) { FactoryGirl.build(:maintainability_metric_configuration) }
 
     context 'when there is a valid json input for maintainability parse' do
       before :each do
