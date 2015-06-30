@@ -12,12 +12,10 @@ describe MetricCollector::Native::Radon::Parser::Maintainability do
         @result = MetricCollector::Native::Radon::Parser::Maintainability.parse(radon_results, processing, metric_configuration)
       end
 
-      it 'is expected to parse the results into a module result' do
-      
+      it 'is expected to parse the results into a module result' do  
         expect(@result['mi']).to eq(radon_results['mi'])
         expect(@result['rank']).to eq(radon_results['rank'])
-
-        end
+      end
     end
   end
 

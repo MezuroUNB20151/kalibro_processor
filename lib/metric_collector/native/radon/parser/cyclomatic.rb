@@ -6,9 +6,8 @@ module MetricCollector
           def self.command
             'cc'
           end
-          
-          def self.parse(cyclomatic_output, processing = nil, metric_configuration = nil)
 
+          def self.parse(cyclomatic_output, processing = nil, metric_configuration = nil)
             cyclomatic_output.each do |file_name, result_hash|
               name_prefix = module_name_prefix(file_name)
               result_hash.each do |key|
@@ -25,7 +24,6 @@ module MetricCollector
           def self.default_value
             1.0
           end
-
         end
       end
     end

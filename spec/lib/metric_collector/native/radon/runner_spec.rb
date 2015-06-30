@@ -13,16 +13,18 @@ describe MetricCollector::Native::Radon::Runner, :type => :model do
   end
 
   describe 'run_wanted_metrics' do
-    it 'is expected to call the radon command' do
-      subject.run_wanted_metrics
+    it 'is expected to run wanted metrics' do
+      MetricCollector::Native::Radon::MetricRunners::Cyclomatic.expects(:run).returns(0)
+      MetricCollector::Native::Radon::MetricRunners::Maintainability.expects(:run).returns(0)
+      MetricCollector::Native::Radon::MetricRunners::Raw.expects(:run).returns(0)
+
+      expect(subject.run_wanted_metrics).to eql(wanted_metrics)
     end
   end
 
   describe 'clean_output' do
-    context 'when the file exists' do
-      it 'is expected to delete files on repository_path' do
-        subject.clean_output
-      end
+    it 'is expected to delete files on repository_path' do
+      expect(subject.clean_output).to eql(wanted_metrics)
     end
   end
 end

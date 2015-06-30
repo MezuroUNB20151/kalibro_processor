@@ -14,23 +14,25 @@ describe MetricCollector::Native::Radon::Parser::Cyclomatic do
       end
 
       it 'is expected to parse the results into a module result' do
-      
         expect(@result['complexity']).to eq(radon_results['complexity'])
         expect(@result['name']).to eq(radon_results['name'])
-
       end
     end
 
-     context 'when there are ModuleResults with the same module and processing' do
+    context 'when there are ModuleResults with the same module and processing' do
+      before :each do
+        @result = MetricCollector::Native::Radon::Parser::Cyclomatic.parse(radon_results, processing, metric_configuration)
+      end
+
       it 'is expected to parse the results into a module result' do
-        MetricCollector::Native::Radon::Parser::Cyclomatic.parse(radon_results, processing, metric_configuration)
-        MetricCollector::Native::Radon::Parser::Cyclomatic.parse(radon_results, processing, secondary_metric_configuration)
+        expect(MetricCollector::Native::Radon::Parser::Cyclomatic.parse(radon_results, processing, metric_configuration)).to eql(@result)
+        expect(MetricCollector::Native::Radon::Parser::Cyclomatic.parse(radon_results, processing, secondary_metric_configuration)).to eql(@result)
       end
     end
   end
 
   describe 'default_value' do
-    it 'is expected to return 0.0' do
+    it 'is expected to return 1.0' do
       expect(MetricCollector::Native::Radon::Parser::Cyclomatic.default_value).to eq(1.0)
     end
   end
