@@ -34,6 +34,14 @@ class ModuleResult < ActiveRecord::Base
     @pre_order ||= pre_order_traverse(root)
   end
 
+  def has_children?
+    !children.is_empty?
+  end
+
+  def is_parent?
+    self.has_children?
+  end
+
   private
 
   def pre_order_traverse(module_result)
